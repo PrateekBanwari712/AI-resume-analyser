@@ -19,7 +19,7 @@ const Upload = () => {
     const handleFileSelect = (file: File | null) => {
         setFile(file);
     }
-  
+
 
     const handleAnalyze = async ({ companyName, jobTitle, jobDescription, file }: { companyName: string, jobTitle: string, jobDescription: string, file: File }) => {
 
@@ -39,11 +39,8 @@ const Upload = () => {
 
         setStatusText("Uploading the image...");
 
-        // const uploadedImage = await fs.upload([imageFile.file]);
         const uploadedImage = await fs.upload([imageFile.file]);
         if (!uploadedImage) return setStatusText("Error: Failed to upload image");
-
-        // console.log("uploadedFile", uploadedFile)
 
         setStatusText("Preparing data...");
 
@@ -71,15 +68,13 @@ const Upload = () => {
             :
             feedback.message.content[0].text;
 
-            data.feedback = JSON.parse(feedbackText);
-            await kv.set(`resume:${uuid}`, JSON.stringify(data));
+        data.feedback = JSON.parse(feedbackText);
+        await kv.set(`resume:${uuid}`, JSON.stringify(data));
 
-            setStatusText("Analysis complete redirecting...");
-            console.log(data);
-            navigate(`/resume/${uuid}`)
-
+        setStatusText("Analysis complete redirecting...");
+        console.log(data);
         navigate(`/resume/${uuid}`)
-        console.log(data)
+
     }
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
