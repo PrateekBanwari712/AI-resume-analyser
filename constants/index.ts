@@ -1,3 +1,5 @@
+// Dummy data
+
 export const resumes: Resume[] = [
   {
     id: "1",
@@ -181,6 +183,7 @@ export const resumes: Resume[] = [
   },
 ];
 
+//AI response format
 export const AIResponseFormat = `
       interface Feedback {
       overallScore: number; //max 100
